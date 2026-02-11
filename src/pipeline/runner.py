@@ -43,7 +43,6 @@ class BenchmarkRunner:
         if llm_compare:
             llm_value_comparator = LLMValueComparator(
                 openai_api_key=self.config.openai_api_key,
-                anthropic_api_key=self.config.anthropic_api_key,
             )
 
         for domain in domains:
@@ -52,76 +51,105 @@ class BenchmarkRunner:
 
             # If LLM compare is enabled, require cached crawl+extraction artifacts
             if llm_compare:
-                for ct in crawlers:
-                    for llm_type in llms:
-                        try:
-                            cached = self._load_cached_artifact(
-                                domain, ct.value, llm_type.value, self.config.output_dir
+                async def _process_cached_combo(ct: CrawlerType, llm_type: LLMType):
+                    try:
+                        cached = self._load_cached_artifact(
+                            domain, ct.value, llm_type.value, self.config.output_dir
+                        )
+                        if cached is None:
+                            raise ValueError(
+                                f"Missing cached intermediate for {domain} "
+                                f"{ct.value}/{llm_type.value}"
                             )
-                            if cached is None:
-                                raise ValueError(
-                                    f"Missing cached intermediate for {domain} "
-                                    f"{ct.value}/{llm_type.value}"
+                        crawl_result, parsed, extraction = cached
+
+                        eval_result = self.comparator.evaluate(extraction)
+                        eval_result.homepage_internal_links = crawl_result.homepage_internal_links
+                        eval_result.homepage_internal_links_crawled = crawl_result.homepage_internal_links_crawled
+                        eval_result.homepage_total_links = crawl_result.homepage_total_links
+                        eval_result.homepage_external_links = crawl_result.homepage_external_links
+
+                        gt_map = self.comparator.get_normalized_ground_truth(extraction.domain)
+                        if gt_map:
+                            extracted_vals = extraction.features
+                            gt_vals = {k: v["value"] for k, v in gt_map.items()}
+                            openai_scores = self._load_llm_comparison(
+                                extraction.domain,
+                                ct.value,
+                                llm_type.value,
+                                self.config.output_dir,
+                            )
+                            if openai_scores is None:
+                                openai_scores = await llm_value_comparator.compare_openai(
+                                    extracted_vals, gt_vals
                                 )
-                            crawl_result, parsed, extraction = cached
-
-                            eval_result = self.comparator.evaluate(extraction)
-                            eval_result.homepage_internal_links = crawl_result.homepage_internal_links
-                            eval_result.homepage_internal_links_crawled = crawl_result.homepage_internal_links_crawled
-                            eval_result.homepage_total_links = crawl_result.homepage_total_links
-                            eval_result.homepage_external_links = crawl_result.homepage_external_links
-                            all_results.append(eval_result)
-
-                            logger.info(
-                                f"  {ct.value} (cached): "
-                                f"{len(crawl_result.page_contents)} pages, "
-                                f"{parsed.char_count} chars, "
-                                f"{crawl_result.duration_seconds:.1f}s"
-                            )
-                            logger.info(
-                                f"    {llm_type.value}: "
-                                f"accuracy={eval_result.overall_accuracy:.0%} "
-                                f"({eval_result.features_correct}/{len(eval_result.feature_scores)} correct)"
-                            )
-
-                            gt_map = self.comparator.get_normalized_ground_truth(extraction.domain)
-                            if gt_map:
-                                extracted_vals = extraction.features
-                                gt_vals = {k: v["value"] for k, v in gt_map.items()}
-                                try:
-                                    openai_scores = await llm_value_comparator.compare_openai(
-                                        extracted_vals, gt_vals
+                                if save_intermediate:
+                                    self._save_llm_comparison(
+                                        extraction.domain,
+                                        ct.value,
+                                        llm_type.value,
+                                        openai_scores,
+                                        self.config.output_dir,
                                     )
-                                    claude_scores = await llm_value_comparator.compare_claude(
-                                        extracted_vals, gt_vals
-                                    )
-                                    if save_intermediate:
-                                        self._save_llm_comparison(
-                                            extraction.domain,
-                                            ct.value,
-                                            llm_type.value,
-                                            openai_scores,
-                                            claude_scores,
-                                            self.config.output_dir,
-                                        )
-                                except Exception as e:
-                                    logger.warning(f"    LLM compare failed: {e}")
+                            self._apply_llm_compare_scores(eval_result, openai_scores)
 
-                        except Exception as e:
-                            logger.error(f"  {ct.value}+{llm_type.value} cached run failed: {e}")
-                            all_results.append(EvaluationResult(
-                                domain=domain,
-                                crawler=ct,
-                                llm=llm_type,
-                                overall_accuracy=0.0,
-                                features_found=0,
-                                features_correct=0,
-                                overall_presence_accuracy=0.0,
-                                features_present_correct=0,
-                                errors=[str(e)],
-                            ))
-                        done += 1
-                        logger.info(f"  Progress: {done}/{total}")
+                        return {
+                            "ok": True,
+                            "crawler": ct,
+                            "llm": llm_type,
+                            "eval_result": eval_result,
+                            "page_count": len(crawl_result.page_contents),
+                            "char_count": parsed.char_count,
+                            "duration_seconds": crawl_result.duration_seconds,
+                        }
+                    except Exception as e:
+                        return {
+                            "ok": False,
+                            "crawler": ct,
+                            "llm": llm_type,
+                            "error": str(e),
+                        }
+
+                tasks = [
+                    asyncio.create_task(_process_cached_combo(ct, llm_type))
+                    for ct in crawlers
+                    for llm_type in llms
+                ]
+
+                for completed in asyncio.as_completed(tasks):
+                    result = await completed
+                    if result["ok"]:
+                        eval_result = result["eval_result"]
+                        all_results.append(eval_result)
+                        logger.info(
+                            f"  {result['crawler'].value} (cached): "
+                            f"{result['page_count']} pages, "
+                            f"{result['char_count']} chars, "
+                            f"{result['duration_seconds']:.1f}s"
+                        )
+                        logger.info(
+                            f"    {result['llm'].value}: "
+                            f"accuracy={eval_result.overall_accuracy:.0%} "
+                            f"({eval_result.features_correct}/{len(eval_result.feature_scores)} correct)"
+                        )
+                    else:
+                        logger.error(
+                            f"  {result['crawler'].value}+{result['llm'].value} cached run failed: "
+                            f"{result['error']}"
+                        )
+                        all_results.append(EvaluationResult(
+                            domain=domain,
+                            crawler=result["crawler"],
+                            llm=result["llm"],
+                            overall_accuracy=0.0,
+                            features_found=0,
+                            features_correct=0,
+                            overall_presence_accuracy=0.0,
+                            features_present_correct=0,
+                            errors=[result["error"]],
+                        ))
+                    done += 1
+                    logger.info(f"  Progress: {done}/{total}")
                 continue
 
             # Phase 1: Crawl with all crawlers
@@ -161,8 +189,15 @@ class BenchmarkRunner:
                 # Phase 3: Extract with each LLM
                 for llm_type in llms:
                     try:
-                        extractor = get_extractor(llm_type, self.config)
-                        extraction = await extractor.extract(parsed)
+                        cached = self._load_cached_artifact(
+                            domain, crawl_result.crawler.value, llm_type.value, self.config.output_dir
+                        )
+                        if cached is not None:
+                            _, _, extraction = cached
+                            logger.info(f"    {llm_type.value}: using cached extraction")
+                        else:
+                            extractor = get_extractor(llm_type, self.config)
+                            extraction = await extractor.extract(parsed)
 
                         if extraction.error:
                             logger.warning(f"    {llm_type.value} error: {extraction.error}")
@@ -187,24 +222,28 @@ class BenchmarkRunner:
                                 extracted_vals = extraction.features
                                 gt_vals = {k: v["value"] for k, v in gt_map.items()}
                                 try:
-                                    openai_scores = await llm_value_comparator.compare_openai(
-                                        extracted_vals, gt_vals
+                                    openai_scores = self._load_llm_comparison(
+                                        extraction.domain,
+                                        crawl_result.crawler.value,
+                                        llm_type.value,
+                                        self.config.output_dir,
                                     )
-                                    claude_scores = await llm_value_comparator.compare_claude(
-                                        extracted_vals, gt_vals
-                                    )
-                                    if save_intermediate:
-                                        self._save_llm_comparison(
-                                            extraction.domain,
-                                            crawl_result.crawler.value,
-                                            llm_type.value,
-                                            openai_scores,
-                                            claude_scores,
-                                            self.config.output_dir,
+                                    if openai_scores is None:
+                                        openai_scores = await llm_value_comparator.compare_openai(
+                                            extracted_vals, gt_vals
                                         )
+                                        if save_intermediate:
+                                            self._save_llm_comparison(
+                                                extraction.domain,
+                                                crawl_result.crawler.value,
+                                                llm_type.value,
+                                                openai_scores,
+                                                self.config.output_dir,
+                                            )
+                                    self._apply_llm_compare_scores(eval_result, openai_scores)
                                 except Exception as e:
                                     logger.warning(f"    LLM compare failed: {e}")
-                        if save_intermediate:
+                        if save_intermediate and cached is None:
                             self._save_intermediate_artifacts(
                                 crawl_result, parsed, extraction, self.config.output_dir
                             )
@@ -496,7 +535,6 @@ class BenchmarkRunner:
         crawler: str,
         llm: str,
         openai_scores: list,
-        claude_scores: list,
         output_dir: Path,
     ):
         import re
@@ -512,10 +550,53 @@ class BenchmarkRunner:
             "crawler": crawler,
             "llm": llm,
             "openai": openai_scores,
-            "claude": claude_scores,
         }
         with open(path, "w") as f:
             json.dump(payload, f, indent=2, default=str)
+
+    def _load_llm_comparison(
+        self,
+        domain: str,
+        crawler: str,
+        llm: str,
+        output_dir: Path,
+    ) -> Optional[list]:
+        import re
+
+        def slugify(text: str) -> str:
+            return re.sub(r"[^a-zA-Z0-9._-]+", "_", text).strip("_")
+
+        domain_key = slugify(domain.replace("https://", "").replace("http://", ""))
+        path = output_dir / "intermediate" / domain_key / crawler / f"{llm}_llm_compare.json"
+        if not path.exists():
+            return None
+        data = json.loads(path.read_text())
+        return data.get("openai")
+
+    def _apply_llm_compare_scores(self, eval_result: EvaluationResult, openai_scores: list):
+        if not openai_scores:
+            return
+        score_map = {}
+        for item in openai_scores:
+            feature = item.get("feature")
+            similarity = item.get("similarity")
+            if feature is None or similarity is None:
+                continue
+            try:
+                score_map[feature] = float(similarity)
+            except (TypeError, ValueError):
+                continue
+        if not score_map:
+            return
+
+        for fs in eval_result.feature_scores:
+            if fs.feature_name in score_map:
+                fs.score = score_map[fs.feature_name]
+                fs.match_type = "llm_similarity"
+
+        if eval_result.feature_scores:
+            eval_result.overall_accuracy = sum(fs.score for fs in eval_result.feature_scores) / len(eval_result.feature_scores)
+            eval_result.features_correct = sum(1 for fs in eval_result.feature_scores if fs.score >= 0.8)
 
 
     def _save_csv(self, report: BenchmarkReport, path: Path):

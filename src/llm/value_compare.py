@@ -2,7 +2,6 @@ import json
 from typing import List, Dict, Any
 
 from openai import AsyncOpenAI
-import anthropic
 from pydantic import BaseModel, Field
 
 
@@ -20,14 +19,10 @@ class LLMValueComparator:
     def __init__(
         self,
         openai_api_key: str,
-        anthropic_api_key: str,
         openai_model: str = "gpt-4o",
-        anthropic_model: str = "claude-sonnet-4-20250514",
     ):
         self.openai = AsyncOpenAI(api_key=openai_api_key) if openai_api_key else None
-        self.anthropic = anthropic.AsyncAnthropic(api_key=anthropic_api_key) if anthropic_api_key else None
         self.openai_model = openai_model
-        self.anthropic_model = anthropic_model
 
     def _build_prompt(self, extracted: Dict[str, Any], ground_truth: Dict[str, Any]) -> str:
         return (
@@ -58,28 +53,4 @@ class LLMValueComparator:
         parsed = response.choices[0].message.parsed
         if parsed is not None:
             return [r.model_dump() for r in parsed.results]
-        return []
-
-    async def compare_claude(self, extracted: Dict[str, Any], ground_truth: Dict[str, Any]) -> List[Dict[str, Any]]:
-        if not self.anthropic:
-            return []
-        tool_schema = LLMComparisonOutput.model_json_schema()
-        tool_schema.pop("title", None)
-        response = await self.anthropic.messages.create(
-            model=self.anthropic_model,
-            max_tokens=4000,
-            system="You are a precise evaluator. Return only valid JSON that matches the schema.",
-            tools=[{
-                "name": "compare_features",
-                "description": "Compare extracted values to ground truth and score similarity.",
-                "input_schema": tool_schema,
-            }],
-            tool_choice={"type": "tool", "name": "compare_features"},
-            messages=[{"role": "user", "content": self._build_prompt(extracted, ground_truth)}],
-        )
-        for block in response.content:
-            if block.type == "tool_use":
-                data = block.input
-                results = data.get("results", [])
-                return results
         return []
