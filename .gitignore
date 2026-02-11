@@ -39,11 +39,12 @@ Thumbs.db
 
 # Project specific
 results/
-web_scraping_ground_truth_dataset*.xlsx
-verified_data*.jsonl
+
+# CSV files - allow specific directories
 *.csv
 !representative_sample*.csv
 !domains.csv
+!domains_origin/*.csv
 
 # Temporary files
 .~lock.*

@@ -1,0 +1,99 @@
+name,domain,city,countryCode,creatioLastActivityDisplayTimestamp,creatioLastContactDisplayTimestamp,creatioOwner,creatioStatus,creatioTeam,crunchbaseCategoryList,currentEmployeeCount,employeeCountGrowth,state,totalFunding
+1Ciso,1ciso.com,New York,USA,2026-02-05T10:34:24.076004,2026-02-05T10:33:16.028000,None,B,None,None,13,8.0,New York,
+49ing,49ing.ai,Zürich,CHE,2026-02-05T09:17:40.109000,2026-02-05T09:12:26.396000,Hannah Ditmars,B,SW,None,32,129.0,Zürich,
+Adomo Health,adomohealth.com,New York,USA,2026-02-06T13:55:31.702214,2026-02-06T13:54:15.157000,None,B,None,"Health Care,Medical",11,83.0,New York,120000
+Ad Reform,adreform.com,Atlanta,USA,2026-02-05T12:41:55.636640,2026-02-05T11:42:00,None,B,None,"Advertising,Artificial Intelligence (AI),Marketing",12,0.0,Georgia,
+ALARA,alaradental.com,New York,USA,2026-02-05T10:54:51.442000,2026-02-05T10:54:51.442000,Cassidy Piersiak,B,I&C,"Artificial Intelligence (AI),Dental,Price Comparison,Procurement,Software",3,200.0,New York,500000
+Amherst Intelligent Security,amherstintelligentsecurity.com,Boston,USA,2026-02-06T10:18:51.655000,2026-02-06T10:18:51.655000,Trevor Eckler,C,SW,"Artificial Intelligence (AI),Security,Software",8,0.0,Massachusetts,20000
+Anodet Inc.,anodet.com,New York,USA,2026-02-06T13:15:48.240726,2026-02-06T13:15:12.816000,None,B,None,"Information Services,Information Technology,Internet",9,200.0,New York,2999998
+Arclet,arclet.com,Asheville,USA,2026-02-06T13:20:04.653667,2026-02-06T12:58:34.253000,None,B,None,"Health Care,Public Safety",7,0.0,North Carolina,
+Aspireship,aspireship.com,Scottsdale,USA,2026-02-06T13:35:31.300000,2026-02-06T13:35:31.300000,None,C,None,"E-Learning,Education,Human Resources,SaaS,Software,Training",23,15.0,Arizona,2856000
+Atorus,atorusresearch.com,Newtown Square,USA,2026-02-05T13:39:02.566000,2026-02-05T12:34:46.591000,Chad Kemmerer,S3,SW,"Analytics,Information Technology,Pharmaceutical",182,21.0,Pennsylvania,
+Automated Analytics,automatedanalytics.co,Tampa,USA,2026-02-05T11:38:01.228000,2026-02-05T11:38:01.228000,Justin Chung,S2,SW,"Analytics,Artificial Intelligence (AI),Software",20,-13.0,Florida,1355700
+Caribou,caribou.care,Toronto,CAN,2026-02-06T10:59:00,2026-02-06T10:59:00,Ella Steinhilber,S2,SW,"Apps,Health Care,Software",57,24.0,Ontario,
+Carver Edison,carveredison.com,New York,USA,2026-02-06T15:45:10.725000,2026-02-06T15:45:10.725000,Ainsley Radell,S3,I&C,"Financial Services,FinTech",11,22.0,New York,250000
+cognext.ai,cognext.ai,New York,USA,2026-02-06T10:27:03.397000,2026-02-06T10:27:03.397000,Trevor Eckler,C,SW,"Financial Services,Risk Management,Software",68,3.0,New York,
+ComplyStream,complystream.com,London,GBR,2026-02-05T16:29:53.142000,2026-02-05T16:29:53.142000,Chad Kemmerer,C,SW,"Artificial Intelligence (AI),Compliance,FinTech",8,700.0,"London, City of",568000
+Contractor Foreman,contractorforeman.com,Carolina,USA,2026-02-06T13:02:00,2026-02-06T13:02:00,Michael Brannan,S3,SW,"Apps,Construction,Project Management,Software",67,91.0,North Carolina,
+Cross River,crossriver.com,Fort Lee,USA,2026-02-05T10:00:56.953000,2026-02-05T10:00:56.953000,Jim Ferry,None,I&C,"Banking,Financial Services,FinTech",867,7.0,New Jersey,908000000
+Cympire,cympire.com,Ra‘ananna,ISR,2026-02-05T12:27:33.109000,2026-02-05T12:27:33.109000,Chad Kemmerer,B,SW,"Corporate Training,Cyber Security,EdTech,Information Technology,SaaS,Simulation,Software",18,20.0,Central,
+DigitalXForce,digitalxforce.com,Southlake,USA,2026-02-06T15:58:27.502000,2026-02-06T15:58:27.502000,Chad Kemmerer,A,SW,"Cyber Security,SaaS",11,-15.0,Texas,5000000
+Dili,dili.ai,New York,USA,2026-02-06T20:08:37.411093,2026-02-05T11:41:22.429000,Justin Chung,S1,SW,"Analytics,Application Performance Management,Artificial Intelligence (AI),Big Data",22,100.0,New York,3725000
+Directus,directus.io,Brooklyn,USA,2026-02-06T12:57:11.371642,2026-02-06T12:30:49.079000,Cassidy Piersiak,S2,I&C,"Database,Developer APIs,SaaS,Software",50,-4.0,New York,8000000
+EASL,easltech.com,Ambler,USA,2026-02-06T13:26:41.823000,2026-02-06T13:26:41.823000,Chad Kemmerer,B,SW,"Art,Compliance,Data Integration",13,44.0,Pennsylvania,1725000
+Edusign,edusign.com,Paris,FRA,2026-02-05T14:13:56.223615,2026-02-05T09:08:38.395000,Hannah Ditmars,S1,SW,"Corporate Training,Education,Internet,SaaS,Software,Training",53,10.0,Île-de-France,1144385
+Elios Talent,eliostalent.com,Houston,USA,2026-02-06T15:28:32.653000,2026-02-06T15:28:32.653000,Justin Chung,S2,SW,None,18,350.0,Texas,
+exon,exon-media.com,Tel Aviv-Yafo,ISR,2026-02-05T12:46:08.469000,2026-02-05T12:46:08.469000,Juliet Fitzgerald,A,I&C,None,123,-5.0,Tel Aviv,
+File AI,file.ai,Singapore,SGP,2026-02-06T14:01:53.970000,2026-02-06T14:01:53.970000,Justin Chung,B,SW,"Analytics,Artificial Intelligence (AI),FinTech,Machine Learning,Software",,,,20230000
+FMP,financialmodelingprep.com,Neuilly-sur-Seine,FRA,2026-02-06T14:31:50.705000,2026-02-06T14:31:50.705000,Chad Kemmerer,S3,SW,"Developer APIs,Finance,Financial Services,FinTech",54,238.0,Île-de-France,
+FinWise,finwiseapp.io,Leipsic,USA,2026-02-05T09:34:51.032000,2026-02-05T09:34:51.032000,Juliet Fitzgerald,B,I&C,"FinTech,Personal Finance,SaaS",5,67.0,Delaware,
+Fish Audio,fish.audio,Mountain View,USA,2026-02-06T11:15:45.490022,2026-02-06T11:12:34.630000,Nikki Schwenk,S2,SW,None,17,113.0,California,
+Flexzo AI,flexzo.ai,None,GBR,2026-02-05T09:40:35.602909,2026-02-05T09:38:00.499000,Danielle Brown,S2,I&C,"Artificial Intelligence (AI),Health Care,Hospital",3,200.0,Milton Keynes,
+Fastr,getfastr.com,Boston,USA,2026-02-05T09:06:00.498000,2026-02-05T09:06:00.498000,Hannah Ditmars,B,SW,"Artificial Intelligence (AI),Content Marketing,Information Technology,Software",87,2.0,Massachusetts,31750000
+Giv,givhealthcare.com,Lehi,USA,2026-02-05T08:17:02.993445,2026-02-05T08:16:27.866000,None,S2,None,None,61,190.0,Utah,
+GLC Advisors,glca.com,New York,USA,2026-02-05T11:24:47.340000,2026-02-05T11:24:47.340000,Kyle Howard-Johnson,None,SW,Financial Services,89,11.0,New York,
+Gratia,gogratia.com,New York,USA,2026-02-05T09:41:20.298000,2026-02-05T09:41:20.298000,Danielle Brown,B,I&C,"SaaS,Staffing Agency",38,9.0,New York,300112
+Goodnotes,goodnotes.com,London,GBR,2026-02-06T14:04:19.949000,2026-02-06T14:04:19.949000,Isabelle Tashima,S3,I&C,"Apps,Computer,Consumer,Software",360,37.0,"London, City of",6000000
+Grantd,grantdequity.com,Boulder,USA,2026-02-06T14:45:03.172000,2026-02-06T14:45:03.172000,Trevor Eckler,B,SW,Financial Services,19,217.0,Colorado,5000000
+Haven,havensafety.com,Alto,USA,2026-02-06T11:00:06.780000,2026-02-06T11:00:06.780000,Trevor Eckler,C,SW,None,12,9.0,California,
+"Hawkin Dynamics, Inc.",hawkindynamics.com,Westbrook,USA,2026-02-06T13:19:10.107000,2026-02-06T13:19:10.107000,Chad Kemmerer,B,SW,"Life Science,Software,Sports",39,8.0,Maine,8977500
+Impresa Corp.,impresa-us.com,Agoura Hills,USA,2026-02-06T15:52:48.679000,2026-02-06T15:52:48.679000,Sinjon Goldberg,B,SW,"Enterprise,Enterprise Resource Planning (ERP),Software",6,500.0,California,500000
+InStore.ai,instore.ai,Los Gatos,USA,2026-02-05T16:51:00,2026-02-05T16:51:00,Ella Steinhilber,C,SW,"Business Intelligence,Retail Technology",28,87.0,California,5000000
+ION Water,ionwater.io,Louisville,USA,2026-02-05T09:22:33.179000,2026-02-05T09:22:33.179000,Hannah Ditmars,S2,SW,Water,32,19.0,Kentucky,
+Jackrabbit Technologies,jackrabbittech.com,Huntersville,USA,2026-02-05T11:31:36.018000,2026-02-05T11:31:36.018000,Michael Brannan,S2,SW,"Accounting,Education,Music,Software",108,-11.0,North Carolina,984000
+JFCRx,jfcrx.com,Genoa City,USA,2026-02-06T13:36:47.649000,2026-02-06T13:36:47.649000,Chad Kemmerer,B,SW,"Analytics,Consulting,Pharmaceutical,Software",31,82.0,Wisconsin,
+Jurny,jurny.com,Los Angeles,USA,2026-02-05T10:25:14.043993,2026-02-05T10:24:45.693000,None,B,None,"Artificial Intelligence (AI),Hospitality,Hotel,Operating Systems,Property Management,SaaS,Software,Vacation Rental",44,10.0,California,16494363
+KredosAi,kredosai.com,Bellevue,USA,2026-02-06T14:13:56.286000,2026-02-05T13:16:00,Ella Steinhilber,B,SW,"Artificial Intelligence (AI),Financial Services,FinTech,Payments,Software",17,89.0,Washington,3412997
+Kvarn X,kvarnx.com,Helsinki,FIN,2026-02-05T11:01:55.936000,2026-02-05T11:01:55.936000,Juliet Fitzgerald,B,I&C,None,13,225.0,Uusimaa,
+LandSkyAI,landsky.ai,Elmwood Park,USA,2026-02-06T13:28:42.792000,2026-02-06T13:28:42.792000,Chad Kemmerer,B,SW,"Drones,Information Technology,Robotics",10,43.0,New Jersey,200000
+Rise - #1 Life Reset App,lifereset.com,None,None,2026-02-05T12:35:51.633000,2026-02-05T12:35:51.633000,Juliet Fitzgerald,A,I&C,None,5,0.0,,
+Smart AI ,lightwork.blue,London,None,2026-02-06T10:21:03.568658,2026-02-06T09:58:20.142000,None,B,None,None,11,,,
+LLumin CMMS+,llumin.com,Springfield,USA,2026-02-05T14:22:58.361000,2026-02-05T14:22:58.361000,None,B,None,"Computer,Software",27,17.0,Massachusetts,
+Lyssn,lyssn.io,Bellevue,USA,2026-02-05T08:29:56.597000,2026-02-05T08:29:56.597000,Trevor Eckler,S3,SW,Artificial Intelligence (AI),32,7.0,Washington,2100000
+Medipyxis,medipyxis.com,None,None,2026-02-06T11:02:38.065000,2026-02-06T11:02:38.065000,Trevor Eckler,C,SW,None,,,,
+Movemint,movemint.cc,Oakland,USA,2026-02-05T12:51:34.040000,2026-02-05T12:51:34.040000,Juliet Fitzgerald,C,I&C,Web Development,16,100.0,California,2400000
+Mycroft,mycroft.io,Toronto,CAN,2026-02-05T09:23:29.182000,2026-02-05T09:23:29.182000,Cassidy Piersiak,A,I&C,"Agentic AI,Artificial Intelligence (AI),Compliance,Cyber Security,Information Technology,Internet,Software",26,117.0,Ontario,3660064
+NewVest,newvest.com,New York,USA,2026-02-05T14:05:19.086000,2026-02-05T14:05:19.086000,Trevor Eckler,B,SW,"Finance,Financial Services,Venture Capital",30,43.0,New York,
+NOTHREAT,nothreat.io,Covent Garden,GBR,2026-02-05T08:43:30.624947,2026-02-05T08:42:55.870000,None,B,None,"Cyber Security,Network Security,Software",35,84.0,Essex,121181
+Numinar,numinar.com,Washington,USA,2026-02-05T15:38:25.454329,2026-02-05T15:37:39.303000,None,B,None,Software,10,25.0,District of Columbia,5375000
+Nuuvia,nuuvia.com,Portland,USA,2026-02-05T09:14:58.377000,2026-02-05T09:14:58.377000,Ainsley Radell,B,I&C,"Financial Services,FinTech,Online Portals",9,50.0,Oregon,4000000
+ONRAMP,onrampfleet.com,San Francisco,USA,2026-02-06T19:12:00,2026-02-06T19:12:00,Cassidy Piersiak,B,I&C,None,17,31.0,California,21000000
+OpenAssets,openassets.to,Pittsburgh,USA,2026-02-05T12:37:32.810000,2026-02-05T12:37:32.810000,Trevor Eckler,A,SW,None,27,0.0,Pennsylvania,
+Operators Guild,operators-guild.com,Daly City,USA,2026-02-06T16:48:07.197000,2026-02-06T16:48:07.197000,Steve Shaffer,C,Operations,None,558,11.0,California,
+Paid.care,paid.care,Bloomington,USA,2026-02-05T11:35:32.490769,2026-02-05T11:16:34.989000,Cassidy Piersiak,S2,I&C,"Home Health Care,Software",14,100.0,Indiana,30000
+PANTA,pantaindex.com,None,None,2026-02-05T09:54:10.006025,2026-02-05T09:53:46.563000,None,C,None,None,,,,
+ParkM,parkm.com,Greenwood Village,USA,2026-02-06T17:20:34.897000,2026-02-06T17:20:34.897000,Michael Brannan,S2,SW,"Online Portals,Parking,Property Management,Real Estate,Software",29,53.0,Colorado,
+PayLow Pro,paylowpro.com,None,None,2026-02-05T09:13:01.568000,2026-02-05T09:13:01.568000,James McGibbon,B,SW,None,,,,
+Perle,perle.ai,San Francisco,USA,2026-02-06T12:37:17.128000,2026-02-06T12:37:17.128000,Juliet Fitzgerald,S3,I&C,"Artificial Intelligence (AI),Information Technology,Internet",71,689.0,California,16000000
+Proxy,proxylegalapp.com,Chicago,USA,2026-02-05T16:38:05.509000,2026-02-05T16:38:05.509000,Chad Kemmerer,C,SW,None,18,29.0,Illinois,
+Pulse Point,pulsepoint.ai,Woodstock,USA,2026-02-05T14:26:25.146000,2026-02-05T14:26:25.146000,Chad Kemmerer,B,SW,None,11,83.0,Georgia,
+Qurable,qurable.co,Miami,USA,2026-02-05T13:36:11.335000,2026-02-05T13:36:11.335000,Danielle Brown,S2,I&C,"Artificial Intelligence (AI),Blockchain,Consumer Software,Credit Cards,Cryptocurrency,FinTech,Internet,Loyalty Programs,SaaS",44,159.0,Florida,1665000
+READI,readibots.com,Ottawa,CAN,2026-02-06T12:52:40.792546,2026-02-06T12:52:06.759000,None,B,None,"Information Technology,Software,Software Engineering",17,0.0,Ontario,
+RealWork,realworklabs.com,Austin,USA,2026-02-06T15:42:03.772000,2026-02-06T15:42:03.772000,Hannah Ditmars,S2,SW,Software,87,23.0,Texas,2500000
+Remi,remihq.com,Lehi,USA,2026-02-06T17:01:14.615000,2026-02-06T17:01:14.615000,Carolyn Woll,S3,I&C,"Construction,Home Improvement,Software",31,35.0,Utah,21500000
+R.grid,rgrid.tech,London,GBR,2026-02-05T12:25:35.689000,2026-02-05T12:25:35.689000,Chad Kemmerer,C,SW,"Artificial Intelligence (AI),Machine Learning,Software",28,180.0,"London, City of",8042822
+Sandbox Wealth,sandboxwealth.com,New York,USA,2026-02-06T09:22:44.801000,2026-02-06T09:22:44.801000,Juliet Fitzgerald,C,I&C,"Financial Services,FinTech,Software,Wealth Management",12,50.0,New York,1250000
+S-Docs,sdocs.com,New York,USA,2026-02-05T11:58:48.442000,2026-02-05T11:58:48.442000,Nikki Schwenk,S2,SW,"Cloud Computing,CRM,Enterprise Software,SaaS,Software",49,0.0,New York,
+Sellfire,sellfire.com,Austin,USA,2026-02-06T14:08:00.560324,2026-02-06T14:07:31.596000,Nikki Schwenk,S2,SW,"Apps,Artificial Intelligence (AI),Consulting,Information Technology,Sales,Software,Training",36,13.0,Texas,100007
+trumpet 🎺,sendtrumpet.com,London,GBR,2026-02-06T17:19:08.574000,2026-02-06T17:19:08.574000,Michael Brannan,S3,SW,"Marketing,SaaS,Sales,Sales Automation,Software",51,46.0,"London, City of",9589799
+Silkline,silkline.ai,Chicago,USA,2026-02-06T13:29:59.304000,2026-02-06T13:29:59.304000,Chad Kemmerer,B,SW,None,13,86.0,Illinois,4000000
+SiteLabs,sitelabsglobal.com,Anderson,USA,2026-02-05T14:23:37.048087,2026-02-05T14:23:15.703000,None,B,None,"Health Care,Medical,Test and Measurement",15,50.0,South Carolina,2250000
+SketchDeck.ai,sketchdeck.ai,Edmonton,CAN,2026-02-06T16:04:55.075000,2026-02-06T13:34:03.557000,Chad Kemmerer,B,SW,"Artificial Intelligence (AI),Machine Learning,Software",18,100.0,Alberta,120000
+Skyvern,skyvern.com,San Francisco,USA,2026-02-05T14:24:29.856000,2026-02-05T14:24:29.856000,Chad Kemmerer,B,SW,"Artificial Intelligence (AI),Data Center Automation,Software",9,80.0,California,500000
+SoldThrough,soldthrough.com,Austin,USA,2026-02-05T15:46:51.220000,2026-02-05T15:46:51.220000,Cassidy Piersiak,A,I&C,"Business Development,Retail",17,70.0,Texas,
+spotixx,spotixx.com,Frankfurt,GER,2026-02-05T12:32:50.208131,2026-02-05T12:32:31.848000,None,B,None,"Artificial Intelligence (AI),Banking,Financial Services,FinTech,Fraud Detection,Machine Learning",26,-7.0,Hesse,
+Tembi - Market Intelligence,tembi.io,Copenhagen,DNK,2026-02-06T13:27:52.772000,2026-02-06T13:27:52.772000,Chad Kemmerer,B,SW,"Business Development,Business Process Automation (BPA),Data Management",26,13.0,Hovedstaden,3122903
+Tewke,tewke.com,London,GBR,2026-02-05T10:47:07.426151,2026-02-05T10:46:39.725000,None,C,None,"Clean Energy,CleanTech,Energy Efficiency,Energy Management,Smart Home",20,67.0,"London, City of",3290481
+The Swarm,theswarm.com,San Francisco,USA,2026-02-06T13:17:17.694000,2026-02-06T13:17:17.694000,Chad Kemmerer,B,SW,"Business Development,Professional Networking,Recruiting,Sales,Software",15,-12.0,California,8000000
+TalentMapper,thetalentmapper.com,London,GBR,2026-02-05T09:53:34.552000,2026-02-05T09:53:34.552000,Trevor Eckler,B,SW,"Artificial Intelligence (AI),Human Resources,Machine Learning",18,38.0,"London, City of",2443987
+Titan,titanbanking.ai,New York,USA,2026-02-06T10:22:22.075000,2026-02-06T10:22:22.075000,Trevor Eckler,B,SW,None,11,38.0,New York,
+Tracts,tracts.co,Houston,USA,2026-02-06T11:07:30.591000,2026-02-06T11:07:30.591000,Trevor Eckler,S2,SW,"Energy,Oil and Gas,SaaS,Software",20,11.0,Texas,2300000
+Travel Code,travel-code.com,St. Petersburg,USA,2026-02-06T11:04:19.831000,2026-02-06T11:04:19.831000,Trevor Eckler,B,SW,None,12,71.0,Florida,
+Traycer,traycer.ai,San Francisco,USA,2026-02-06T09:48:23.831000,2026-02-06T09:48:23.831000,Trevor Eckler,B,SW,"Artificial Intelligence (AI),Developer Tools,SaaS,Software",11,57.0,California,40000
+Guac,tryguac.co,Dover,USA,2026-02-06T10:29:17.875000,2026-02-06T10:29:17.875000,Nikki Schwenk,A,SW,"Artificial Intelligence (AI),Information Services,Retail Technology,Supply Chain Management",,,DE,2800000
+Twosense,twosense.ai,New York,USA,2026-02-05T14:46:07.779000,2026-02-05T14:46:07.779000,Hannah Ditmars,C,SW,"Artificial Intelligence (AI),Biometrics,Cyber Security,Enterprise,Identity Management,Security,Software",12,-25.0,New York,6653000
+Unit 221B,unit221b.com,New York,USA,2026-02-06T16:33:39.087000,2026-02-06T16:33:39.087000,Hannah Ditmars,B,SW,"Cyber Security,Information Technology,Security",18,-5.0,New York,5000000
+Unsloth AI,unsloth.ai,San Francisco,USA,2026-02-05T12:02:49.869000,2026-02-05T12:02:49.869000,Nikki Schwenk,A+,SW,"Artificial Intelligence (AI),Generative AI,Machine Learning,Open Source,Software",12,50.0,California,540000
+Bruno,usebruno.com,Austin,USA,2026-02-06T11:11:33.089000,2026-02-06T11:11:33.089000,Trevor Eckler,B,SW,"Developer APIs,Information Technology,Open Source",37,85.0,Texas,
+Horizon AI,usehorizon.ai,San Francisco,USA,2026-02-05T12:33:00.075831,2026-02-05T12:31:56.021000,None,B,None,"Artificial Intelligence (AI),Banking,Enterprise Software,Financial Services,Management Consulting,Productivity Tools,SaaS",,,CA,
+Vessel,vessel.co,Montréal,CAN,2026-02-06T13:57:35.157000,2026-02-06T13:57:35.157000,Danielle Brown,B,I&C,"Financial Services,FinTech,Online Portals,Venture Capital",20,100.0,Quebec,7511504
