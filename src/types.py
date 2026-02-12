@@ -27,6 +27,7 @@ class CrawlerType(str, Enum):
 class LLMType(str, Enum):
     OPENAI = "openai"
     CLAUDE = "claude"
+    HAIKU = "haiku"
 
 
 @dataclass

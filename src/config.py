@@ -59,6 +59,8 @@ class Config:
                 errors.append("OPENAI_API_KEY required for openai LLM")
             if l == LLMType.CLAUDE and not self.anthropic_api_key:
                 errors.append("ANTHROPIC_API_KEY required for claude LLM")
+            if l == LLMType.HAIKU and not self.anthropic_api_key:
+                errors.append("ANTHROPIC_API_KEY required for haiku LLM")
 
         if errors:
             raise ValueError("Missing API keys:\n  " + "\n  ".join(errors))

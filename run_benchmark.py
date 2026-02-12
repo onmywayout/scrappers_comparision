@@ -75,9 +75,9 @@ def main():
     )
     parser.add_argument(
         "--llms", nargs="+",
-        choices=["openai", "claude"],
+        choices=["openai", "claude", "haiku"],
         default=["openai", "claude"],
-        help="LLMs to use for extraction (default: both)",
+        help="LLMs to use for extraction (default: openai and claude)",
     )
 
     # Page discovery
@@ -99,6 +99,11 @@ def main():
         "--dont-save-intermediate",
         action="store_true",
         help="Disable saving per-domain/crawler/LLM intermediate artifacts",
+    )
+    parser.add_argument(
+        "--force-crawl",
+        action="store_true",
+        help="Force crawling even if cached artifacts exist (default is cache-first)",
     )
     parser.add_argument(
         "--llm-compare",
@@ -129,6 +134,15 @@ def main():
     crawlers = [CrawlerType(c) for c in args.crawlers]
     llms = [LLMType(l) for l in args.llms]
 
+    if LLMType.HAIKU in llms and any(c != CrawlerType.JINA for c in crawlers):
+        print(
+            "\nConfiguration error:\n"
+            "Haiku runs are only supported with the jina crawler. "
+            "Please run with --crawlers jina when using --llms haiku.\n",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
     # Validate keys
     try:
         config.validate(crawlers, llms)
@@ -158,6 +172,7 @@ def main():
             max_pages=args.max_pages,
             save_intermediate=not args.dont_save_intermediate,
             llm_compare=args.llm_compare,
+            use_cache_only=not args.force_crawl,
         )
     )
 

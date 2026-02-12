@@ -35,6 +35,7 @@ class BenchmarkRunner:
         max_pages: int = 10,
         save_intermediate: bool = False,
         llm_compare: bool = False,
+        use_cache_only: bool = True,
     ) -> BenchmarkReport:
         all_results: List[EvaluationResult] = []
         total = len(domains) * len(crawlers) * len(llms)
@@ -152,10 +153,41 @@ class BenchmarkRunner:
                     logger.info(f"  Progress: {done}/{total}")
                 continue
 
-            # Phase 1: Crawl with all crawlers
-            crawl_results = await self._crawl_domain(domain, crawlers, pages, max_pages)
+            # Phase 1: Crawl with all crawlers (unless cache-only)
+            crawl_results = []
+            if not use_cache_only:
+                crawl_results = await self._crawl_domain(domain, crawlers, pages, max_pages)
+            else:
+                # Load cached crawl/parse for each crawler (any llm) and skip crawling
+                for ct in crawlers:
+                    cached_any = self._load_any_cached_artifact(
+                        domain, ct.value, self.config.output_dir
+                    )
+                    if cached_any is None:
+                        logger.error(f"  {ct.value} cached run failed: Missing cached artifact for {domain}")
+                        for llm_type in llms:
+                            all_results.append(EvaluationResult(
+                                domain=domain,
+                                crawler=ct,
+                                llm=llm_type,
+                                overall_accuracy=0.0,
+                                features_found=0,
+                                features_correct=0,
+                                overall_presence_accuracy=0.0,
+                                features_present_correct=0,
+                                errors=[f"Missing cached artifact for {domain} {ct.value}"],
+                            ))
+                            done += 1
+                            logger.info(f"  Progress: {done}/{total}")
+                        continue
+                    crawl_result, parsed_cached, _ = cached_any
+                    crawl_results.append((crawl_result, parsed_cached))
 
-            for crawl_result in crawl_results:
+            for item in crawl_results:
+                if use_cache_only:
+                    crawl_result, parsed = item
+                else:
+                    crawl_result = item
                 if crawl_result.error and not crawl_result.raw_content:
                     logger.warning(f"  {crawl_result.crawler.value} failed: {crawl_result.error}")
                     for llm_type in llms:
@@ -173,8 +205,9 @@ class BenchmarkRunner:
                         done += 1
                     continue
 
-                # Phase 2: Parse
-                parsed = self.parser.parse(crawl_result)
+                # Phase 2: Parse (skip if cache-only and we already have parsed)
+                if not use_cache_only:
+                    parsed = self.parser.parse(crawl_result)
                 logger.info(
                     f"  {crawl_result.crawler.value}: "
                     f"{len(crawl_result.page_contents)} pages, "
@@ -472,6 +505,25 @@ class BenchmarkRunner:
         )
 
         return crawl_result, parsed_content, extraction_obj
+
+    def _load_any_cached_artifact(
+        self, domain: str, crawler: str, output_dir: Path
+    ) -> Optional[tuple[CrawlResult, ParsedContent, ExtractedFeatures]]:
+        import re
+
+        def slugify(text: str) -> str:
+            return re.sub(r"[^a-zA-Z0-9._-]+", "_", text).strip("_")
+
+        domain_key = slugify(domain.replace("https://", "").replace("http://", ""))
+        base_dir = output_dir / "intermediate" / domain_key / crawler
+        if not base_dir.exists():
+            return None
+        for path in sorted(base_dir.glob("*.json")):
+            if path.name.endswith("_llm_compare.json"):
+                continue
+            llm = path.stem
+            return self._load_cached_artifact(domain, crawler, llm, output_dir)
+        return None
 
     def _save_json(self, report: BenchmarkReport, path: Path):
         data = {
